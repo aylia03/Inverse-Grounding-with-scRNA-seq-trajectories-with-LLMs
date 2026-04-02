@@ -25,11 +25,6 @@ client = OpenAI(
 
 
 # local LLMs
-## BioGPT
-def call_bioGPT(system_prompt, user_prompt):
-    text_input = system_prompt + "\n" + user_prompt
-    return generator(text_input, truncation=True, max_length=50, do_sample=True)[0][
-        "generated_text"]
 
 ## DeepSeek
 def call_DeepSeek(system_prompt, user_promp):
@@ -47,7 +42,7 @@ def call_Mistral(system_prompt, user_prompt):
     chat_completion = client.chat.completions.create(
         messages=[
             {'role': 'system', 'content': system_prompt},
-            {'role': 'user', 'content': user_promp}
+            {'role': 'user', 'content': user_prompt}
         ],
         model='mistral',
     )
@@ -72,9 +67,13 @@ def call_Mistral(system_prompt, user_prompt):
 def call_llms(model, system_prompt, user_prompt):
     if model == "deepseek":
         return call_DeepSeek(system_prompt, user_prompt)
-    elif model == "mistal":
+    elif model == "mistral":
         return call_Mistral(system_prompt, user_prompt)
-    elif model == "biogpt":
-        return call_bioGPT(system_prompt, user_prompt)
     else:
         raise ValueError(f"Unkown model: {model}")
+
+
+print(call_llms("mistral", "You are an doctor", "for what is ibuprofen used"))
+print()
+print(call_llms("deepseek", "You are an doctor", "for what is ibuprofen used"))
+print()
