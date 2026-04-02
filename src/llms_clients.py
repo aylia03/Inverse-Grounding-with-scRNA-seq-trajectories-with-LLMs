@@ -73,7 +73,7 @@ def call_llms(model, system_prompt, user_prompt):
         raise ValueError(f"Unkown model: {model}")
 
 
-print(call_llms("mistral", "You are an doctor", "for what is ibuprofen used"))
-print()
-print(call_llms("deepseek", "You are an doctor", "for what is ibuprofen used"))
-print()
+# print(call_llms("mistral", "You are an doctor", "for what is ibuprofen used"))
+# print()
+# print(call_llms("deepseek", "You are an doctor", "for what is ibuprofen used"))
+# print()
