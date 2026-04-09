@@ -20,7 +20,7 @@ expr_mat = pd.DataFrame(
 )
 
 # extract metadata
-meta = adata.obs[["annot", "latent_time", "phase", "n_counts", "timepoint", "ratio_0", "ratio_1"]].copy()
+meta = adata.obs[["annot", "latent_time", "phase", "n_counts", "timepoint", "leiden", "velocity_pseudotime", "pst", "ratio_0", "ratio_1"]].copy()
 # class distribution
 print("Class distribution before balancing:", meta["annot"].value_counts())
 
@@ -66,7 +66,10 @@ for cell_id in test_cases.index:
         "latent_time": round(float(row["latent_time"]), 4),
         "phase": str(row["phase"]) if "phase" in row else "unknown",
         "timepoint": str(row.get("timepoint", "unknown")),
-        "count": str(row.get("n_counts", "0"))
+        "count": str(row.get("n_counts", "0")),
+        "pseudotime":str(row.get("velocity_pseudotime", "unknown")),
+        "Cluster": str(row["leiden"]) if "leiden" in row else "unknown",
+        "Plantir PST": round(float(row.get("pst", "unknown")),4)
     }
     cells_data.append(cell_entry)
 
