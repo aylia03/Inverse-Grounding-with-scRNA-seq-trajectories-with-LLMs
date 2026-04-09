@@ -25,6 +25,6 @@ USER_PROMPT_3 = ("Given the following expression data of T-Cells from a chronic 
                  "Let's think step by step: \n "
                  "1. What exhaustion-associated genes from the literature are elevated or lowered in the current cell? \n"
                  "2. Which non-exhaustion-associated genes from the literature are elevated in the current cell? \n"
-                 "3. What does the latent_time, phase, timepoint indicated about the cell"
+                 "3. What does the latent_time, phase, timepoint indicated about the cell\n"
                  "4. Based on the expression file and literature insights, what is the most likely fate of the cell?\n\n" +
                 ANSWER_FORMAT)
