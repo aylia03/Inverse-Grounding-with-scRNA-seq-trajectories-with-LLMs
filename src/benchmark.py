@@ -20,6 +20,18 @@ prompts = {
 }
 rag_data = ""
 
+def parse_answer(anwer):
+    """
+    parses the answer of the llm to only one label
+    :param anwer: answer of the llm
+    :return: only one label: 'exhausted' or 'not exhausted'
+    """
+    if "not exhausted" in anwer:
+        return "not exhausted"
+    elif "exhausted" in anwer:
+        return "exhausted"
+    else: return "unknown"
+
 for phase in range(2):  # geht gerade nur bis phase 2, weil phase 3 bruacht noch das pubmed
     print("Phase:", phase+1) # iterate over phase
     for llm in models: # go over each llm
@@ -30,4 +42,3 @@ for phase in range(2):  # geht gerade nur bis phase 2, weil phase 3 bruacht noch
             else:
                 user_prompt = prompts[phase].format(json_input = cells_data)
 
-            
