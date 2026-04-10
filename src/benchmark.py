@@ -12,4 +12,22 @@ with open("../Data/processed/labels_gt_data.json", "r") as f:
     gt = json.load(f)
 print("Groundtruth is loaded.\n")
 
+models = ["deepseek", "mistral"]
+prompts = {
+    1: prompts.USER_PROMPT_1,
+    2: prompts.USER_PROMPT_2,
+    3: prompts.USER_PROMPT_3
+}
+rag_data = ""
 
+for phase in range(2):  # geht gerade nur bis phase 2, weil phase 3 bruacht noch das pubmed
+    print("Phase:", phase+1) # iterate over phase
+    for llm in models: # go over each llm
+        preds = []  ## store predictions for each model
+        for cell in cells_data:
+            if phase == 3:
+                user_prompt = prompts[phase].format(json_input = cells_data, rag_context = rag_data)
+            else:
+                user_prompt = prompts[phase].format(json_input = cells_data)
+
+            
