@@ -67,8 +67,6 @@ def call_Mistral(system_prompt, user_prompt):
 def call_llms(model, system_prompt, user_prompt):
     if model == "deepseek":
         return call_DeepSeek(system_prompt, user_prompt)
-    elif model == "mistral":
-        return call_Mistral(system_prompt, user_prompt)
     else:
         raise ValueError(f"Unkown model: {model}")
 
