@@ -1,7 +1,7 @@
 import json
 
-import prompts as prompts
-# from llms_clients import call_llms
+import prompts as prompt
+from llms_clients import call_llms
 
 print("Loading the data ...")
 with open("../Data/processed/cells_data.json", "r") as f:
@@ -14,9 +14,9 @@ print("Groundtruth is loaded.\n")
 
 models = ["deepseek", "mistral"]
 prompts = {
-    1: prompts.USER_PROMPT_1,
-    2: prompts.USER_PROMPT_2,
-    3: prompts.USER_PROMPT_3
+    1: prompt.USER_PROMPT_1,
+    2: prompt.USER_PROMPT_2,
+    3: prompt.USER_PROMPT_3
 }
 rag_data = ""
 
@@ -38,7 +38,9 @@ for phase in range(2):  # geht gerade nur bis phase 2, weil phase 3 bruacht noch
         preds = []  ## store predictions for each model
         for cell in cells_data:
             if phase == 3:
-                user_prompt = prompts[phase].format(json_input = cells_data, rag_context = rag_data)
+                user_prompt = prompts[phase].format(json_input = json.dumps(cell), rag_context = rag_data)
             else:
-                user_prompt = prompts[phase].format(json_input = cells_data)
+                user_prompt = prompts[phase].format(json_input = json.dumps(cell))
+
+            preds.append(parse_answer(call_llms(llm, prompt.SYSTEM_PROMPT, user_prompt)))
 
