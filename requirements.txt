@@ -7,3 +7,4 @@ sacremoses
 protobuf
 transformers
 torch
+scikit-learn

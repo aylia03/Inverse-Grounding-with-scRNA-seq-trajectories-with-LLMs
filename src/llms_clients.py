@@ -34,19 +34,10 @@ def call_DeepSeek(system_prompt, user_promp):
                 {'role': 'user', 'content': user_promp}
         ],
         model='deepseek-r1:7b',
+        temperature=0.0
     )
     return (chat_completion.choices[0].message.content)
 
-## Mistral
-def call_Mistral(system_prompt, user_prompt):
-    chat_completion = client.chat.completions.create(
-        messages=[
-            {'role': 'system', 'content': system_prompt},
-            {'role': 'user', 'content': user_prompt}
-        ],
-        model='mistral',
-    )
-    return (chat_completion.choices[0].message.content)
 
 
 #### for cloud apis
@@ -67,8 +58,6 @@ def call_Mistral(system_prompt, user_prompt):
 def call_llms(model, system_prompt, user_prompt):
     if model == "deepseek":
         return call_DeepSeek(system_prompt, user_prompt)
-    elif model == "mistral":
-        return call_Mistral(system_prompt, user_prompt)
     else:
         raise ValueError(f"Unkown model: {model}")
 
