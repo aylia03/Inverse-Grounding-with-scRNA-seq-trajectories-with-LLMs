@@ -7,10 +7,13 @@ def search_pubmed(query):
 
 
 def fetch_abstracts(ids):
-    return ""
+    ids_str = ",".join(ids)
+    url = f"https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id={ids_str}&retmode=text&rettype=abstract"
+    response = requests.get(url).text
+    return response
 
-def get_rag_context(abstracts):
-    return ""
+def get_rag_context():
+    return fetch_abstracts(search_pubmed("https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed&term=t+cell+exhaustion&retmode=json"))
 
 
-print(search_pubmed("https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed&term=t+cell+exhaustion&retmode=json"))
+print(get_rag_context())
