@@ -13,7 +13,7 @@ def fetch_abstracts(ids):
     return response
 
 def get_rag_context():
-    return fetch_abstracts(search_pubmed("https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed&term=t+cell+exhaustion&retmode=json"))
+    return fetch_abstracts(search_pubmed("https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed&term=t+cell+exhaustion+marker&retmode=json&retmax=30"))
 
 
 print(get_rag_context())
