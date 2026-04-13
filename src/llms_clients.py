@@ -34,19 +34,10 @@ def call_DeepSeek(system_prompt, user_promp):
                 {'role': 'user', 'content': user_promp}
         ],
         model='deepseek-r1:7b',
+        temperature=0.0
     )
     return (chat_completion.choices[0].message.content)
 
-## Mistral
-def call_Mistral(system_prompt, user_prompt):
-    chat_completion = client.chat.completions.create(
-        messages=[
-            {'role': 'system', 'content': system_prompt},
-            {'role': 'user', 'content': user_prompt}
-        ],
-        model='mistral',
-    )
-    return (chat_completion.choices[0].message.content)
 
 
 #### for cloud apis
