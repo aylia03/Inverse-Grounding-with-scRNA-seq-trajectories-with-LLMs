@@ -75,6 +75,6 @@ for phase in range(3):  # geht gerade nur bis phase 2, weil phase 3 bruacht noch
 df = pd.DataFrame(result)
 
 os.makedirs("../Data/results/", exist_ok=True)
-df.to_csv("../Data/results/benchmarking_res_test.csv", index=False )
+df.to_csv("../Data/results/benchmarking_res.csv", index=False )
 
 
